@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<title>深蓝个人博客--记录筚路蓝缕创业生活的个人博客网站！</title>
+		<meta name="keywords" content="个人博客,深蓝个人博客,个人博客模板,原创博客,技术搏客,筚路蓝缕,以启山林,毕路蓝褛,毕路蓝缕" />
+		<meta name="description" content="深蓝个人博客,是一个记录筚路蓝缕,以启山林的创业生活,分享生活点滴,坚持做原创个人博客网站。" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/pintuer.css">
+		<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/bilulanlv.css">
+		<script src="DOMAIN__PUBLIC__/static/index/jquery.js"></script>
+		<script src="DOMAIN__PUBLIC__/static/index/pintuer.js"></script>
+	</head>
+
+	<body>
+		<div class="layout">
+
+			<div class="line margin-big">
+
+				<div class="xs2">
+
+				</div>
+
+				{include file="left/index"/}
+				<div class="xs5 height-big">
+					{volist name='list' id='vo'}
+						<div class="margin-large-top ">
+							<div class="alert box-shadow-small radius-small border-main">
+								<div class="rightboxtitle">
+									<h3><a href="{if condition="$vo.n_type == '' "} DOMAIN{:url('index/DiaryPage/index',array('id'=>$vo.id))} {else /} {:url('index/ArticlePage/index',array('id'=>$vo.id))} {/if}" title="{$vo.title|htmlspecialchars_decode}">{$vo.title|htmlspecialchars_decode}</a></h3></div>
+								<div class="border-Silver border-bottom border-dotted"></div>
+								<!--分隔虚线-->
+								<div class="imagewidth">
+								<p class="text-indent height-big margin-big-top">{$vo.content|htmlspecialchars_decode}</p>
+								</div>
+							<h6 class="icon-calendar rightboxtime">&nbsp;{:date("Y-m-d",$vo.add_time)}&nbsp;&nbsp;&nbsp;&nbsp;<a href="DOMAIN{if condition="$vo.n_type == '' "}{:url('index/DiaryPage/index',array('id'=>$vo.id))} {else /} {:url('index/ArticlePage/index',array('id'=>$vo.id))} {/if}"><font onmouseover="this.className='icon-heart'" onmouseout="this.className='icon-heart-o'" class="icon-heart-o"></font></a>&nbsp;{$vo.flag}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{if condition="$vo.n_type == '' "} {:url('index/DiaryPage/index',array('id'=>$vo.id))} {else /} {:url('index/ArticlePage/index',array('id'=>$vo.id))} {/if}#comment"><font onmouseover="this.className='icon-comment'" onmouseout="this.className='icon-comment-o'" class="icon-comment-o"></font></a>&nbsp;{$vo.num_comments}</h6>
+							</div>
+						</div>
+
+					{/volist}
+
+					<div align="center" class="margin-big-top">
+						<a href="DOMAIN{:url('index/Diary/index')}#bottom" class="button button-block">查看更多</a>
+					</div>
+
+					<div class="xs2">
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+</html>

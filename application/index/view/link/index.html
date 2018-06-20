@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<title>友情链接--记录筚路蓝缕创业生活的个人博客网站！</title>
+		<meta name="keywords" content="关键词" />
+		<meta name="description" content="描述" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/pintuer.css">
+		<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/bilulanlv.css">
+		<script src="DOMAIN__PUBLIC__/static/index/jquery.js"></script>
+		<script src="DOMAIN__PUBLIC__/static/layer/layer.js"></script>
+		<script src="DOMAIN__PUBLIC__/static/index/pintuer.js"></script>
+	</head>
+
+	<body>
+		<div class="layout">
+
+			<div class="line margin-big">
+
+				<div class="xs2">
+
+				</div>
+
+				{include file="left/index"/}
+				<div class="xs5">
+
+					<div class="margin-large-top ">
+						<div class="alert box-shadow-small radius-small border-main">
+							<div class="rightboxtitle">
+								<h3>友情链接(图片)<small> 按点击量动态排序</small></h3></div>
+							<div class="border-Silver border-bottom border-dotted"></div>
+							<!--分隔虚线-->
+							<div class="margin-small-top">
+								{volist name='list' id='vo'}
+									<a href="DOMAIN{:url('index/Link/click',array('id'=>$vo.id),'')}" target="_blank"><img src="{$vo.logourl}" alt="{$vo.title}" title="{$vo.title}||{$vo.content}" width="87px" height="30px" class="margin-little-bottom" /></a>
+								{/volist}
+							</div>
+
+						</div>
+					</div>
+
+					<div class="margin-large-top ">
+						<div class="alert box-shadow-small radius-small border-main">
+							<div class="rightboxtitle">
+								<h3>友情链接(文字)<small> 按点击量动态排序</small></h3></div>
+							<div class="border-Silver border-bottom border-dotted"></div>
+							<!--分隔虚线-->
+							<div class="margin-small-top">
+								{volist name='list1' id='val'}
+									<a class="link" href="{:url('index/Link/click',array('id'=>$val.id),'')}" target="_blank" alt="{$val.title}" title="{$val.title}||{$val.content}" style="line-height:20px;">{$val.title}</a>&nbsp;&nbsp;
+
+								{/volist}
+							</div>
+
+						</div>
+					</div>
+
+					<div class="margin-large-top height">
+						<div class="alert box-shadow-small radius-small border-main">
+							<div class="rightboxtitle">
+								<h5>本站站点信息(<a href="#comment">申请友链</a>)</h5></div>
+							<div class="border-Silver border-bottom border-dotted"></div>
+							<!--分隔虚线-->
+							<div class="margin-small-top fontmain">
+								<p> <strong>友链要求：</strong>本站仅链接个人网站，以及本人认为质量优的叶子！请先做好本站链接，然后请在底部提交您的链接信息，本人收到信息后会及时处理，谢谢合作！
+									<br>
+									<strong>网站名称：</strong>"筚路蓝缕"
+									<br>
+									<strong>本站介绍：</strong><span class="text-red">筚路蓝缕,以启山林。</span>
+									<br>
+									<strong>链接地址：</strong><a href="//www.bilulanlv.com/"><span class="text-red">https://www.BiLuLanLv.com(筚路蓝缕简拼)</span></a>
+									<br>
+									<strong>Logo地址：</strong>https://www.BiLuLanLv.com/img/logo.gif
+									<br>
+									<strong>本站Logo：</strong><img src="//www.BiLuLanLv.com/img/logo.gif"/>
+
+								</p>
+
+							</div>
+
+						</div>
+					</div>
+					<a id="comment" name="comment"></a>
+					<div class="margin-large-top ">
+						<div class="alert box-shadow-small radius-small border-main">
+							<div class="rightboxtitle text-gray">
+								<h5>申请友情链接</h5></div>
+
+							<form name="formdata" class="form-x form-auto" method="post" action="DOMAIN{:url('./index/Link/add','')}" onSubmit="return checkpost();">
+								<div class="form-group">
+									<div class="label">
+										<label for="username">
+											网站名称：</label>
+									</div>
+									<div class="field">
+										<input type="text" name="title" class="input" placeholder="*网站名称" style="width:50%;" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="label">
+										<label for="password">
+											网站地址：</label>
+									</div>
+									<div class="field">
+										<input type="text" name="url" class="input" placeholder="*http://" style="width:50%;" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="label">
+										<label for="password">
+											logo地址：</label>
+									</div>
+									<div class="field">
+										<input type="text" name="logourl" class="input" style="width:80%;" placeholder="不填默认为文字链接" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="label">
+										<label for="password">
+											网站介绍：</label>
+									</div>
+									<div class="field">
+										<input type="text" name="content" class="input" placeholder="选填" style="width:80%;" />
+									</div>
+								</div>
+
+								<div class="diarysend">
+									<button class="button button-small bg-gray margin-large-left linkbutton" type="button" onclick="checkpost()">提交申请</button>
+								</div>
+							</form>
+
+						</div>
+					</div>
+
+					<div class="xs2">
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<script language="JavaScript">
+			function checkpost() {
+				if(formdata.title.value==""){
+					layer.msg("网站名称不能为空！");
+				    formdata.title.focus();
+				    return false;
+			   
+			   }
+			   if(formdata.url.value==""){
+				   	layer.msg("网址不能为空！");
+				    formdata.url.focus();
+				    return false;
+			   
+			   }
+				//AJAX提交
+				$.ajax({
+					type:"post",
+					url:'{:url('./index/Link/add','','',true)}',
+					data:$('form[name=formdata]').serialize(),
+					datatype:'json',
+					success:function(data){
+						if(data.code==0){
+							layer.msg(data.msg);
+						}else if(data.code==1){
+							layer.msg(data.msg,{time:1500},function(){
+								history.go(0);
+							});
+						}
+					}
+					
+				});
+			  }
+              //获取随机颜色值
+              function roundcolor(){
+				return  '#' +    
+				    (function(color){    
+				    return (color +=  '0123456789abcdef'[Math.floor(Math.random()*16)])    
+				      && (color.length == 6) ?  color : arguments.callee(color);    
+				  })('');    
+			}
+			//遍历所有节点并重新设置CSS
+			var x = document.getElementsByClassName("link");
+			    for (var i = 0; i < x.length; i++) {
+			    	x[i].style.color = roundcolor();
+			    }
+		</script>
+	</body>
+
+</html>

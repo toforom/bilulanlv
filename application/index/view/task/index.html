@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<title>更新任务系统--记录筚路蓝缕创业生活的个人博客网站！</title>
+		<meta name="keywords" content="关键词" />
+		<meta name="description" content="描述" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/pintuer.css">
+		<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/bilulanlv.css">
+		<script src="DOMAIN__PUBLIC__/static/index/jquery.js"></script>
+		<script src="DOMAIN__PUBLIC__/static/index/pintuer.js"></script>
+		<style>
+			.smalltime{
+				font-family:arial;
+				font-size: 12px;
+				color: #A7B1C2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layout">
+
+			<div class="line margin-big">
+
+				<div class="xs2">
+
+				</div>
+				{include file="left/index"/}
+				<div class="xs5">
+
+					<div class="margin-large-top height">
+						<div class="alert box-shadow-small radius-small border-main">
+							<div class="rightboxtitle">
+								<h3>更新任务系统</h3></div>
+							<div class="border-Silver border-bottom border-dotted"></div>
+							<!--分隔虚线-->
+							<span class="">&nbsp;</span>
+
+							<div class="panel admin-panel">
+								<table class="table table-hover table-striped text-center">
+									<tbody>
+										<tr>
+											<th>任务名称</th>
+											<th width="10%">程度</th>
+											<th width="25%">完成进度</th>
+										</tr>
+										{volist name="list" id="vo"}
+											<tr>
+												<td class="text-left">{$vo.title} <small class="text-gray smalltime">[{:date("Y-m-d H:i:s",$vo.add_time)}]</small></td>
+												<td align="center" valign="middle">
+												<?php
+												switch($vo['state']){
+													case 1:
+													echo '<span class="tag bg-green">正常</span>';
+													break;
+													case 2:
+													echo '<span class="tag bg-red">紧急</span></td>';
+													break;
+												}
+									 			?>
+
+														<td align="center" valign="middle">
+															<div class="<?php if($vo['baifen']==100){echo 'progress';}else{echo 'progress progress-striped active';} ?>" title="完成 {$vo['baifen']} % / 用时 <?php $vo['end_time']=='' ? $end=time() :$end=$vo['end_time'] ; echo number_format(($end-$vo['add_time'])/86400,2) ?> 天 ">
+																<div class="progress-bar <?php if($vo['baifen']==100){echo 'bg-green';}else{echo 'bg-red';} ?>" style="width:{$vo['baifen']}%;"><!--<?php if($vo['baifen']==100){echo '完成';}else{echo $vo['baifen'].'%';} ?>--></div>
+																
+															</div>
+														</td>
+											</tr>
+										{/volist}
+									</tbody>
+								</table>
+								<div class="panel-foot text-center">
+
+									<div align="center" class="margin-big-top">
+										{$list->render()}
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="xs2">
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+</html>

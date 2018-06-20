@@ -1,0 +1,436 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"/www/wwwroot/bilulanlv/application/admin20161108/view/setting/index.html";i:1496111980;}*/ ?>
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>后台设置</title>
+
+		<link href="__PUBLIC__/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="__PUBLIC__/static/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="__PUBLIC__/static/admin/css/animate.css" rel="stylesheet">
+		<link href="__PUBLIC__/static/admin/css/style.css?v=4.1.0" rel="stylesheet">
+
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeIn">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li class="">
+								<a data-toggle="tab" href="#tab-1" aria-expanded="false"> 基本设置</a>
+							</li>
+							<li class="">
+								<a data-toggle="tab" href="#tab-2" aria-expanded="false">修改管理密码</a>
+							</li>
+							<li class="">
+								<a data-toggle="tab" href="#tab-3" aria-expanded="false">密文加盐</a>
+							</li>
+							<li class="">
+								<a data-toggle="tab" href="#tab-4" aria-expanded="false">目标设定</a>
+							</li>
+							<li class="active">
+								<a data-toggle="tab" href="#tab-5" aria-expanded="true">系统参数</a>
+							</li>
+							<li class="">
+								<a data-toggle="tab" href="#tab-6" aria-expanded="true">邮件系统</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab-1" class="tab-pane">
+								<div class="panel-body">
+									
+									<div class="col-sm-12">
+										<div class="ibox float-e-margins">
+											<div class="ibox-title">
+												<h5>SEO设置</h5>
+											</div>
+											<div class="ibox-content">
+												<form class="form-horizontal" method="post" action="">
+													<div class="form-group">
+														<label class="col-sm-3 control-label">前台标题：</label>
+
+														<div class="col-sm-8">
+															<input type="type" name="oldpass" placeholder="前台标题" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">关键字：</label>
+
+														<div class="col-sm-8">
+															<input type="type" name="oldpass" placeholder="关键字" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">内容描述：</label>
+
+														<div class="col-sm-8">
+															<input type="type" name="password1" placeholder="内容描述" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-sm-offset-3 col-sm-3">
+															<button class="btn btn-sm btn-success" type="submit">提交修改</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+
+							<div id="tab-2" class="tab-pane">
+								<div class="panel-body">
+
+									<div class="col-sm-12">
+										<div class="ibox float-e-margins">
+											<div class="ibox-title">
+												<h5>修改密码</h5>
+											</div>
+											<div class="ibox-content">
+												<form class="form-horizontal" method="post" name="formlogin">
+													<div class="form-group">
+														<label class="col-sm-3 control-label">当前密码：</label>
+
+														<div class="col-sm-3">
+															<input type="password" name="oldpass" placeholder="当前密码" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">新密码：</label>
+
+														<div class="col-sm-3">
+															<input type="password" name="password1" placeholder="新密码" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">确认密码：</label>
+
+														<div class="col-sm-3">
+															<input type="password" name="password2" placeholder="新密码" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-sm-offset-3 col-sm-3">
+															<button class="btn btn-sm btn-success" type="button" name="submit">修改密码</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							
+							<div id="tab-3" class="tab-pane">
+								<div class="panel-body">
+
+									<div class="col-sm-12">
+										<div class="ibox float-e-margins">
+											<div class="ibox-title">
+												<h5>修改密文</h5><small class="text-danger">&nbsp;&nbsp;为保证后台密码安全,需要定期更换密文,密文格式可以为任意字符数字字母</small>
+											</div>
+											<div class="ibox-content">
+												<form class="form-horizontal" name="formmiwen">
+													<div class="form-group">
+														<label class="col-sm-3 control-label">密文：</label>
+
+														<div class="col-sm-3">
+															<input type="type" size="30" name="salt" placeholder="<?php echo $list['salt']; ?>" class="form-control">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<div class="col-sm-offset-3 col-sm-3">
+															<button class="btn btn-sm btn-success" type="button" name="miwen">修改密文</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							
+							<div id="tab-4" class="tab-pane">
+								<div class="panel-body">
+
+									<div class="col-sm-12">
+										<div class="ibox float-e-margins">
+											<div class="ibox-title">
+												<h5>设定当年目标计划</h5>
+											</div>
+											<div class="ibox-content">
+												
+												<div class="col-sm-6">
+													 <div class="col-sm-12" id="main" style="width:600px;height:500px;"></div>
+												</div>
+												<div class="col-sm-6">
+												<form class="form-horizontal" method="post" name="formmubiao">
+													<div class="form-group">
+														<div class="col-sm-6">
+															<input type="type" placeholder="提交今日完成目标数" name="today" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-sm-6">
+															<button class="btn btn-sm btn-success" type="button" name="mubiao">提交数据</button>
+														</div>
+													</div>
+												</form>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							
+							<div id="tab-5" class="tab-pane active">
+								<div class="panel-body">
+
+									<div class="col-sm-12">
+										<div class="ibox float-e-margins">
+											<div class="ibox-title">
+												<h5>系统参数</h5>
+											</div>
+											<div class="ibox-content">
+												<form class="form-horizontal">
+													<div class="form-group">
+														<label class="col-sm-3 control-label">ThinkPHP系统版本：</label>
+														<div class="col-sm-3">
+															<input type="type" size="30" name="salt" placeholder="<?php echo THINK_VERSION; ?>" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">PHP版本：</label>
+														<div class="col-sm-3">
+															<input type="type" size="30" name="salt" placeholder="<?php echo phpversion(); ?>" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">是否为windows环境：</label>
+														<div class="col-sm-3">
+															<input type="type" size="30" name="salt" placeholder="<?php if(IS_WIN == '1'): ?>是<?php else: ?>否<?php endif; ?>" class="form-control">
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							
+							<div id="tab-6" class="tab-pane">
+								<div class="panel-body">
+
+									<div class="col-sm-12">
+										<div class="ibox float-e-margins">
+											<div class="ibox-title">
+												<h5>邮件系统设置</h5><small class="text-danger">&nbsp;&nbsp;该配置保存在配置文件中,163邮箱必须开通授权</small>
+											</div>
+											<div class="ibox-content">
+												<form class="form-horizontal" name="formemail">
+													<div class="form-group">
+														<label class="col-sm-3 control-label">发送邮件用户名：</label>
+
+														<div class="col-sm-3">
+															<input type="type" size="30" value="<?php echo $mail[0]['value']; ?>" name="Username" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">发送邮件密码：</label>
+
+														<div class="col-sm-3">
+															<input type="password" size="30" value="<?php echo $mail[1]['value']; ?>" name="Password" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">发件人显示名称：</label>
+
+														<div class="col-sm-3">
+															<input type="type" size="30" value="<?php echo $mail[2]['value']; ?>" name="FromName" class="form-control">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">邮件主题：</label>
+
+														<div class="col-sm-9">
+															<input type="type" value="<?php echo $mail[3]['value']; ?>" name="Subject" class="form-control">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<div class="col-sm-offset-3 col-sm-3">
+															<button class="btn btn-sm btn-success" type="button" name="email">修改配置</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 全局js -->
+		<script src="__PUBLIC__/static/admin/js/jquery.min.js?v=2.1.4"></script>
+		<script type="text/javascript" src="__PUBLIC__/static/layer/layer.js"></script>
+		<script src="__PUBLIC__/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+		<script src="__PUBLIC__/static/admin/js/plugins/echarts/echarts.simple.min.js"></script>
+
+	</body>
+<script>
+$(document).ready(function(){
+	//修改密码
+	$("button[name=submit]").click(function(){
+		$.ajax({
+			type:"post",
+			url:'<?php echo url('./admin20161108/setting/changepass','','',true); ?>',
+			data:$('form[name=formlogin]').serialize(),
+			datatype:'json',
+			success:function(data){
+				if(data.code==0){
+					layer.msg(data.msg,{icon:2});
+				}else if(data.code==1){
+					layer.msg(data.msg,{icon:1,time:1500},function(){
+						//location.href=data.url;
+					});
+				}
+			}
+			
+		});
+	});
+	
+	//修改密文
+	$("button[name=miwen]").click(function(){
+		$.ajax({
+			type:"post",
+			url:'<?php echo url('./admin20161108/setting/ChangeMiWen','','',true); ?>',
+			data:$('form[name=formmiwen]').serialize(),
+			datatype:'json',
+			success:function(data){
+				if(data.code==0){
+					layer.msg(data.msg,{icon:2});
+				}else if(data.code==1){
+					layer.msg(data.msg,{icon:1,time:data.wait*1000},function(){
+						//location.href=data.url;
+						
+					});
+				}
+			}
+			
+		});
+	});
+	
+	
+	//修改目标
+	$("button[name=mubiao]").click(function(){
+		var today = $("input[name=today]").val();
+		$.ajax({
+			type:"post",
+			url:'<?php echo url('./admin20161108/setting/mubiao','','',true); ?>',
+			data:{today:today},
+			datatype:'json',
+			success:function(data){
+				if(data.code==0){
+					layer.msg(data.msg,{icon:2});
+				}else if(data.code==1){
+					layer.msg(data.msg,{icon:1,time:data.wait*1000},function(){
+						location.href=data.url;
+						
+					});
+				}
+			}
+			
+		});
+	});
+	
+});
+
+	//修改邮件配置
+	$("button[name=email]").click(function(){
+		$.ajax({
+			type:"post",
+			url:'<?php echo url('./admin20161108/setting/changeemail','','',true); ?>',
+			data:$('form[name=formemail]').serialize(),
+			datatype:'json',
+			success:function(data){
+				if(data.code==0){
+					layer.msg(data.msg,{icon:2});
+				}else if(data.code==1){
+					layer.msg(data.msg,{icon:1,time:data.wait*1000},function(){
+						location.href=data.url;
+						
+					});
+				}
+			}
+			
+		});
+	});
+
+		// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+       option = {
+		    title : {
+		        text: '全年目标统计图表',
+		        subtext: '仅供参考',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient: 'vertical',
+		        left: 'left',
+		        data: ['终身成就(<?php echo $list['total']; ?>)','今年目标(<?php echo $list['mubiao']; ?>)','完成目标(<?php echo $list['mubiao_ok']; ?>)','当月目标(<?php echo $list['mubiao_month']; ?>)','<?php echo timeago($list['mubiao_time']); ?>(<?php echo $list['mubiao_last']; ?>)','<?php if($list['mubiao']-$list['mubiao_ok'] > 0): ?>剩余目标(<?php echo $list['mubiao']-$list['mubiao_ok']; ?>)<?php else: ?>超额完成(<?php echo $list['mubiao_ok']-$list['mubiao']; ?>)<?php endif; ?>']
+		    },
+		    series : [
+		        {
+		            name: '完成数据',
+		            type: 'pie',
+		            radius : '50%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:<?php echo $list['total']; ?>, name:'终身成就(<?php echo $list['total']; ?>)'},
+		                {value:<?php echo $list['mubiao']; ?>, name:'今年目标(<?php echo $list['mubiao']; ?>)'},
+		                {value:<?php echo $list['mubiao_ok']; ?>, name:'完成目标(<?php echo $list['mubiao_ok']; ?>)'},
+		                {value:<?php echo $list['mubiao_month']; ?>, name:'当月目标(<?php echo $list['mubiao_month']; ?>)'},
+		                {value:<?php echo $list['mubiao_last']; ?>, name:'<?php echo timeago($list['mubiao_time']); ?>(<?php echo $list['mubiao_last']; ?>)'},
+		                {value:<?php echo $list['mubiao']-$list['mubiao_ok']; ?>, name:'<?php if($list['mubiao']-$list['mubiao_ok'] > 0): ?>剩余目标(<?php echo $list['mubiao']-$list['mubiao_ok']; ?>)<?php else: ?>超额完成(<?php echo $list['mubiao_ok']-$list['mubiao']; ?>)<?php endif; ?>'}
+		            ],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
+		        }
+		    ]
+		};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        window.onresize = myChart.resize;
+
+</script>
+</html>

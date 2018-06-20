@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+			<title>{$list.title}--记录筚路蓝缕创业生活的个人博客网站！</title>
+			<meta name="keywords" content="{$list.title}" />
+			<meta name="description" content="{$list.description}" />
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/pintuer.css">
+			<link rel="stylesheet" href="DOMAIN__PUBLIC__/static/index/bilulanlv.css">
+			<script src="DOMAIN__PUBLIC__/static/index/jquery.js"></script>
+			<script src="DOMAIN__PUBLIC__/static/layer/layer.js"></script>
+			<script src="DOMAIN__PUBLIC__/static/index/pintuer.js"></script>
+	</head>
+
+	<body>
+		<div class="layout">
+
+			<div class="line margin-big">
+
+				<div class="xs2">
+
+				</div>
+				{include file="left/index"/}
+				<div class="xs5 height-big">
+					<div class="margin-large-top ">
+						<div class="alert box-shadow-small radius-small border-main">
+							<div class="rightboxtitle">
+								<h3>{$list.title}</h3></div>
+							<div class="border-Silver border-bottom border-dotted"></div>
+							<!--分隔虚线-->
+							<div class="imagewidth" id="layer-photos-demo">
+							<p class="text-indent height-big margin-big-top">{$list.content|htmlspecialchars_decode}</p>
+							</div>
+							<div class="xs6"><p class="text-gray"><span class="text-left">上一篇：<a href="DOMAIN{:url('index/DiaryPage/index',array('id'=>$list.prev))}" title="{$list.prevtitle}">{if condition="$list.prev == ''"}^_^木有了{else /}{$list.prevtitle}{/if}</a></span></p></div>
+							<div class="xs6"><p class="text-gray text-right"><span class="text-right">下一篇：<a href="DOMAIN{:url('index/DiaryPage/index',array('id'=>$list.next))}" title="{$list.nexttitle}">{if condition="$list.next == ''"}^_^木有了{else /}{$list.nexttitle}{/if}</a></span></p></div>
+							<h6 class="icon-calendar rightboxtime">&nbsp;{:date("Y-m-d",$list.add_time)}&nbsp;&nbsp;&nbsp;&nbsp;<font onmouseover="this.className='icon-heart'" onmouseout="this.className='icon-heart-o'" class="icon-heart-o">&nbsp;{$list.flag}&nbsp;&nbsp;&nbsp;&nbsp;</font><font onmouseover="this.className='icon-comment'" onmouseout="this.className='icon-comment-o'" class="icon-comment-o">&nbsp;{$list.comments}</font></h6>
+		</div>
+		</div>
+		
+		<a name="comment" id="comment"></a>
+		<div class="margin-large-top ">
+		<div class="alert box-shadow-small radius-small border-main">
+			<div class="rightboxtitle text-gray">
+				<h5 title="reid">评论</h5>
+			</div>
+
+						<form name="formdata" method="post" class="" onSubmit="return checkpost();">
+						<?php $image=rand(1,8)?>
+							<div class="form-group">
+								<div class="field">
+									<div class="input-group">
+										<span class="addon icon-user"></span>
+										<input type="text" class="input input-auto text-gray" value="{$Think.cookie.bilulanlv_name}" name="name" size="25" placeholder="用户名" style="width:40%;" />
+										<input type="hidden" name="idd" value="{$list.id}" />
+										<input type="hidden" name="image" value="<?php echo $image ?>" />
+										<input type="hidden" name="type" value="1" />
+										<input type="hidden" name="parent" value="0" />
+										<input type="hidden" name="parentemail" value="" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="field">
+									<div class="input-group">
+										<span class="addon icon-link"></span>
+										<input type="text" class="input input-auto text-gray" value="{$Think.cookie.bilulanlv_url}" name="url" size="25" placeholder="http://" style="width:40%;" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="field">
+									<div class="input-group">
+										<span class="addon icon-envelope-o"></span>
+										<input type="text" class="input input-auto text-gray" value="{$Think.cookie.bilulanlv_email}" name="email" size="25" placeholder="E-mail" style="width:40%;" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="field">
+									<div class="input-group">
+										<textarea rows="3" cols="60" class="input input-auto" name="content" placeholder="评论内容/必填"></textarea>
+									</div>
+								</div>
+							</div>
+						
+						<div class="diarysend">
+							<button id="fbpl" class="button button-small bg-gray" type="button" onclick="checkpost()">发布评论</button>
+						</div>
+						</form>
+						&nbsp;
+						{volist name="deep" id="k"}
+								<div class="diarycontent border-top text-black text-little">
+									{if condition="$k.email == '' "}
+									<img src="__PUBLIC__/static/index/image/{$k.image}-20.png" width="20px" height="20px" vspace="5" class="radius-circle"/>
+									{else /}
+									<img src="https://s.gravatar.com/avatar/{$k.email|md5}?s=20" width="20px" height="20px" vspace="5" class="radius-circle"/>
+									{/if}
+									<a href="{$k.url}" target="_blank"> <strong><?php if($k['name']==''){echo '无名大侠';}else{echo $k['name'];} ?></strong></a>：
+									{$k.content} <span class="smallname"><a href="#comment" name="{$k.email}" id="{$k.id}" lang="{$k.name}" onclick="recomment(this.id,this.lang,this.name)">回复</a></span><br />
+									<input name="eemail" type="hidden" value="{$k.email}" />
+									{volist name="k.children" id="k1"}
+									<div style="margin-left:20px;" class="border-top border-dotted text-gray">
+										<img src="https://s.gravatar.com/avatar/{$k1.email|md5}?s=20" width="20px" height="20px" vspace="5" class="radius-circle"/> <a href="{$k1.url}" target="_blank">{$k1.name}</a>：{$k1.content} <span class="smallname"><a href="#comment" name="{$k1.email}" id="{$k1.id}" lang="{$k1.name}" onclick="recomment(this.id,this.lang,this.name)">回复</a></span>
+									</div>
+									{volist name="k1.children" id="k2"}
+									<div style="margin-left:40px;" class="border-top border-dotted text-gray">
+										<img src="https://s.gravatar.com/avatar/{$k2.email|md5}?s=20" width="20px" height="20px" vspace="5" class="radius-circle"/> <a href="{$k2.url}" target="_blank">{$k2.name}</a>：{$k2.content} <span class="smallname"><a href="#comment" name="{$k2.email}" id="{$k2.id}" lang="{$k2.name}" onclick="recomment(this.id,this.lang,this.name)">回复</a></span>
+									</div>
+									{volist name="k2.children" id="k3"}
+									<div style="margin-left:60px;" class="border-top border-dotted text-gray">
+										<img src="https://s.gravatar.com/avatar/{$k3.email|md5}?s=20" width="20px" height="20px" vspace="5" class="radius-circle"/> <a href="{$k3.url}" target="_blank">{$k3.name}</a>：{$k3.content} <span class="smallname"><a href="#comment" name="{$k3.email}" id="{$k3.id}" lang="{$k3.name}" onclick="recomment(this.id,this.lang,this.name)">回复</a></span>
+									</div>
+									{volist name="k3.children" id="k4"}
+									<div style="margin-left:80px;" class="border-top border-dotted text-gray">
+										<img src="https://s.gravatar.com/avatar/{$k4.email|md5}?s=20" width="20px" height="20px" vspace="5" class="radius-circle"/> <a href="{$k4.url}" target="_blank">{$k4.name}</a>：{$k4.content} 
+									</div>
+									{/volist}
+									{/volist}
+									{/volist}
+									{/volist}
+								</div>
+						{/volist}
+
+					</div>
+				</div>
+				<div class="xs2">
+
+				</div>
+
+			</div>
+
+		</div>
+		</div>
+		<script language="JavaScript">
+			function recomment(id,lang,name){
+					$('h5[title=reid]').html('回复 '+lang+' 的评论');
+					$('input[name=parent]').attr('value',id);
+					$('input[name=parentemail]').attr('value',name);
+			};
+			
+			function checkpost() {
+				if (formdata.content.value == "") {
+					layer.msg("评论内容不能为空！",{time:1500});
+					formdata.content.focus();
+					return false;
+				}
+				//AJAX提交
+				$.ajax({
+					type:"post",
+					url:'{:url('./index/DiaryPage/comments','','',true)}',
+					data:$('form[name=formdata]').serialize(),
+					datatype:'json',
+					beforeSend:function(){
+						$('button[id=fbpl]').attr('disabled',true);
+						//layer.msg('评论提交中...',{time:10000});
+					},
+					success:function(data){
+						if(data.code==0){
+							layer.msg(data.msg);
+							$('button[id=fbpl]').attr('disabled',false);
+						}else if(data.code==1 && data.data==1){
+							layer.msg(data.msg,{time:1500},function(){
+								history.go(0);
+							});
+						}else if(data.code==1 && data.data > 1){
+							//
+							layer.msg('评论成功，已经发送邮件通知对方。',{time:1500},function(){
+								$.ajax({
+										type:"post",
+										url:'{:url('./index/DiaryPage/DiaryMailComments','','',true)}',
+										data:{parent:data.data,newid:data.wait},
+										datatype:'json',
+										success:function(data){
+											history.go(0);
+										}	
+										});
+								});
+							//
+						}
+					}
+					
+				});
+			  }
+			//图片查看
+			layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+				  layer.photos({
+				    photos: '#layer-photos-demo'
+				    ,anim: 3 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+				  });
+				});   
+		</script>
+	</body>
+
+</html>

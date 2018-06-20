@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>后台主页</title>
+
+	<link href="__PUBLIC__/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__PUBLIC__/static/admin/css/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+    
+    <div class="wrapper wrapper-content">
+        <div class="row">
+
+            	<div class="col-sm-6">
+            		<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>博客运营</h5>
+                    </div>
+                   <div class="ibox">
+                    <div class="ibox-content">
+                        <h5>累计运行时间 (始于2012-3-5)</h5>
+                        <h2>{$timetj['run']}<small> 天</small></h2>
+                        <div class="progress progress-mini">
+                            <div style="width:100%;" class="progress-bar"></div>
+                        </div>
+                    </div>
+               	 </div>
+               		 </div>
+            	</div>
+            	
+            	<div class="col-sm-6">
+            		<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>光阴似箭</h5>
+                    </div>
+                   <div class="ibox">
+                    <div class="ibox-content">
+                        <h5>今年还剩余</h5>
+                        <h2>{$timetj['guonian']}<small> 天 占比<?php echo round(($timetj['guonian']/365)*100)?>%</small></h2>
+                        <div class="progress progress-mini">
+                            <div style="width:<?php echo round($timetj['guonian']/365*100,1);?>%;" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            	</div>
+            
+            <div class="col-sm-12">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>全站统计<small> 最近6个月</small></h5>
+                    </div>
+                    <div class="ibox-content">
+                        
+                         <div id="main" style="width:100%;height:400px;"></div>
+                        
+                    </div>
+                </div>
+
+            </div>
+ 
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/static/admin/js/jquery.min.js?v=2.1.4"></script>
+	<script src="__PUBLIC__/static/admin/js/plugins/echarts/echarts.simple.min.js"></script>
+    <script src="__PUBLIC__/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+</body>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+
+			option = {
+			    tooltip : {
+			        trigger: 'axis',
+			        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+			            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+			        }
+			    },
+			    legend: {
+			        data:['日志数量({$count[0]})','日志评论({$count[1]})','文章数量({$count[2]})','文章评论({$count[3]})','留言数量({$count[4]})']
+			    },
+			    grid: {
+			        left: '3%',
+			        right: '4%',
+			        bottom: '3%',
+			        containLabel: true
+			    },
+			    xAxis : [
+			        {
+			            type : 'category',
+			            data : ['{$month[0]}','{$month[1]}','{$month[2]}','{$month[3]}','{$month[4]}','{$month[5]}']
+			        }
+			    ],
+			    yAxis : [
+			        {
+			            type : 'value'
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'日志数量({$count[0]})',
+			            type:'bar',
+			            data:['{$diary[0]}','{$diary[1]}','{$diary[2]}','{$diary[3]}','{$diary[4]}','{$diary[5]}']
+			        },
+			        {
+			            name:'日志评论({$count[1]})',
+			            type:'bar',
+			            stack: '广告',
+			            data:['{$diaryc[0]}','{$diaryc[1]}','{$diaryc[2]}','{$diaryc[3]}','{$diaryc[4]}','{$diaryc[5]}']
+			        },
+			        {
+			            name:'文章数量({$count[2]})',
+			            type:'bar',
+			            stack: '广告',
+			            data:['{$article[0]}','{$article[1]}','{$article[2]}','{$article[3]}','{$article[4]}','{$article[5]}']
+			        },
+			        {
+			            name:'文章评论({$count[3]})',
+			            type:'bar',
+			            stack: '广告',
+			            data:['{$articlec[0]}','{$articlec[1]}','{$articlec[2]}','{$articlec[3]}','{$articlec[4]}','{$articlec[5]}']
+			        },
+			        {
+			            name:'留言数量({$count[4]})',
+			            type:'bar',
+			            data:['{$message[0]}','{$message[1]}','{$message[2]}','{$message[3]}','{$message[4]}','{$message[5]}'],
+
+			        }
+			    ]
+			};
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        window.onresize = myChart.resize;
+    </script>
+</html>
